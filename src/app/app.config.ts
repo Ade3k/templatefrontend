@@ -35,8 +35,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
 
     // Configuration du client HTTP avec un intercepteur pour ajouter des tokens JWT
-    provideHttpClient(
-      withInterceptors([JwtHttpInterceptor]) // Ajout de l'intercepteur pour gérer les authentifications JWT
-    ),
+    
   ]
 };
