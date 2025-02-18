@@ -1,0 +1,136 @@
+<div class="layout">
+  <div class="content" style="margin-top: 20px">
+    <div style="margin-left: 70px">
+      <div class="row">
+        <div class="col-md-8">
+          <!-- Carte affichant la biographie de l'utilisateur sélectionné ou connecté -->
+          <div class="card mb-4 backgroundBio">
+            <div class="card-body">
+              <div class="d-flex">
+                <img src="/cicling1.png" style="width: 60px; height: 60px" alt="Logo" />
+                <h5 class="card-title" style="margin-top: 5px; margin-left: 5px">
+                  {{ selectedUser?.bio || user?.bio }}
+                </h5>
+              </div>
+
+              <!-- Bouton permettant d'envoyer une demande d'ami si l'utilisateur sélectionné n'est pas déjà un ami -->
+              <button *ngIf="
+                  selectedUser &&
+                  !isFriend(selectedUser) &&
+                  selectedUser._id !== user._id
+                " class="btn btn-outline-success" (click)="sendFriendRequest()">
+                Envoyer une invitation
+              </button>
+            </div>
+          </div>
+          <!-- Section permettant à l'utilisateur connecté de créer une nouvelle publication -->
+          <div *ngIf="isUserProfile()" class="card mb-4">
+            <div class="card-body d-flex">
+              <!-- Image de profil de l'utilisateur -->
+              <img [src]="
+                  'http://localhost:3000/' +
+                  (selectedUser?.photo || user?.photo)
+                " alt="Photo de profil" class="rounded-circle post-author-image" />
+              <!-- Champ de texte pour écrire une nouveau post -->
+              <textarea [(ngModel)]="newPostContent" class="form-control postContent" rows="1" [placeholder]="
+                  selectedUser?.firstName
+                    ? 'Quoi de neuf, ' + selectedUser.firstName + ' ?'
+                    : 'Quoi de neuf ?'
+                "></textarea>
+              <!-- Icônes pour ajouter une image et envoyer le post -->
+              <div style="margin-top: 10px; display: flex; margin-left: 10px">
+                <a class="nav-link" (click)="fileInput.click()">
+                  <img src="/upload4.png" class="imageIcone" alt="Logo" />
+                </a>
+                <input #fileInput type="file" accept="image/*" style="display: none"
+                  (change)="onFileSelected($event)" />
+                <a class="nav-link" (click)="createPost()">
+                  <img src="/send4.png" class="sendIcone" alt="Logo" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- Liste des publications affichées -->
+          <div>
+            <div *ngFor="let post of posts">
+              <div class="card mb-4" *ngIf="isFriendWithUser(post.author._id) || post.author._id === user._id">
+                <div class="card-body d-flex">
+                  <!-- Affichage de la photo de profil de l'auteur de la publication -->
+                  <img [src]="
+                    'http://localhost:3000/' +
+                    (selectedUser?.photo || user?.photo)
+                  " alt="Photo de profil" class="rounded-circle post-author-image" />
+                  <div>
+                    <!-- Affichage du nom de l'auteur et de la date de publication -->
+                    <h6 class="card-title mb-0">
+                      {{ post.author.firstName }} {{ post.author.lastName }}
+                      <small class="text-muted" style="margin-left: 10px">
+                        {{ post.createdAt | date : "short" }}
+                      </small>
+                    </h6>
+                    <!-- Contenu de la publication -->
+                    <!--Suppression de publication-->
+                    <button *ngIf="post.author._id === user._id" (click)="deletePost(post._id)" class="delete-btn">
+                      ✖
+                    </button>
+                    <p class="card-text">{{ post.content }}</p>
+                    <!-- Affichage de l'image si la publication en contient une -->
+                    <img *ngIf="post.image" [src]="'http://localhost:3000/' + post.image" class="image-post" />
+                  </div>
+                </div>
+                <div class="likeComment">
+                  <a class="nav-link commentaire" (click)="openCommentModal(post)">
+                    <img src="/like3.png" class="likeIcone hover-effect" style="width: 15px; height: 15px" alt="Logo" />
+                    J'aime
+                  </a>
+                  <a class="nav-link commentaire" style="margin-left: 10px" (click)="openCommentModal(post)">
+                    <img src="/comment3.png" class="commentaireIcone hover-effect" style="width: 15px; height: 15px"
+                      alt="Logo" />
+                    Commenter
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Fenêtre modale pour l'ajout d'un commentaire -->
+  <div id="commentModal" class="modal fade" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- En-tête de la fenêtre modale -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="commentModalLabel">
+            Ajouter un commentaire
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <!-- Contenu de la fenêtre modale -->
+        <div class="modal-body">
+          <!-- Liste des commentaires existants sous la publication -->
+          <div *ngFor="let comment of selectedPost?.comments">
+            <p>
+              <strong>{{ comment.author }}</strong>: {{ comment.content }}
+            </p>
+          </div>
+
+          <!-- Champ de texte pour saisir un nouveau commentaire -->
+          <textarea [(ngModel)]="newComment" class="form-control mt-3" rows="3"
+            placeholder="Votre commentaire"></textarea>
+        </div>
+
+        <!-- Pied du modal avec les boutons Annuler et Enregistrer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            Annuler
+          </button>
+          <button type="button" class="btn btn-outline-warning" (click)="saveComment(selectedPost._id, newComment)">
+            Enregistrer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

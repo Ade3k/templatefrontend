@@ -1,0 +1,76 @@
+<div class="layoutMessaging">
+    <div class="container-fluid h-100">
+      <div class="row h-100">
+        <!-- Bouton pour créer le groupe (Déplacé ici pour être visible tout le temps) -->
+        <div class="col-12">
+          <button class="btn btn-success w-100 mt-3" (click)="createGroupChat()">
+            Créer le groupe
+          </button>
+        </div>
+        
+        <!-- Sélection des amis -->
+        <div class="col-md-4 border-end">
+          <div class="user-list-card p-3 h-100 overflow-auto">
+            <h5>Sélectionner des amis :</h5>
+            <div class="user-card d-flex align-items-center p-2 mb-2 border rounded"
+                 *ngFor="let user of userList">
+              <input type="checkbox" (change)="toggleUserSelection(user)" />
+              <img [src]="'http://localhost:3000/' + user?.photo" class="rounded-circle me-2"
+                   style="width: 40px; height: 40px;" />
+              <p class="username m-0">{{ user?.firstName }}</p>
+            </div>
+            <h5 class="mt-4">Groupes :</h5>
+            <div *ngFor="let group of groups">
+              <button (click)="joinGroup(group._id)">{{ group.name }}</button>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Espace de discussion (affiché après création du groupe) -->
+        <div class="col-md-8 d-flex flex-column" *ngIf="roomId">
+          <div class="chat-container d-flex flex-column flex-grow-1">
+            <div class="chat-header d-flex align-items-center p-2 border-bottom">
+              <p class="username m-0">Discussion de groupe</p>
+            </div>
+            
+            <!-- Affichage des messages -->
+            <div class="chat-body flex-grow-1 p-3 overflow-auto">
+              <div *ngFor="let item of messageArray" class="d-flex mb-2"
+                   [ngClass]="{ 
+                     'same-user': item?.user === currentUser?.firstName, 
+                     'sent': item?.user === currentUser?.firstName, 
+                     'received': item?.user !== currentUser?.firstName }">
+                <div *ngIf="item?.user === currentUser?.firstName" class="d-flex">
+                  <div class="message-container">
+                    <p class="message-text m-0">{{ item?.message }}</p>
+                  </div>
+                  <img [src]="'http://localhost:3000/' + currentUser?.photo"
+                       class="rounded-circle ms-2" style="width: 30px; height: 30px;" />
+                </div>
+                <div *ngIf="item?.user !== currentUser?.firstName" class="d-flex">
+                  <div class="message-container">
+                    <p class="message-text m-0">{{ item?.message }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Input pour envoyer un message -->
+            <div class="chat-footer p-2 border-top">
+              <div class="row g-2">
+                <div class="col-10">
+                  <input type="text" placeholder="Écrire un message" class="form-control"
+                         [(ngModel)]="messageText" (keyup)="$event.keyCode === 13 && sendMessage()" />
+                </div>
+                <div class="col-2 text-center align-self-center">
+                  <button class="btn btn-primary w-100" (click)="sendMessage()">Envoyer</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,96 @@
+.dropdown-menu {
+  max-height: 300px;
+  overflow-y: auto;
+  position: absolute; /* Positionne le menu de façon absolue */
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.dropdown-item {
+  padding: 0.5rem 1rem;
+  color: #495057;
+  text-decoration: none;
+  display: block; /* Affiche les éléments du menu en bloc (sur une nouvelle ligne) */
+}
+
+.dropdown-item:hover {
+  background-color: #e5e8ea;
+  border-radius: 5px;
+}
+
+img {
+  height: 50px;
+  width: 50px;
+}
+
+input {
+  height: 40px;
+  border-radius: 50px;
+  width: 275px;
+  background-color: #058448;
+}
+
+.divfor {
+  margin-top: 13px;
+  width: 275px;
+  background-color: #fff;
+}
+
+nav {
+  background-size: 300% 100%;
+}
+
+.iconeNavbar {
+  width: 22px;
+  height: 18px;
+}
+
+li {
+  margin: 5px;
+  background-color: #f2f4f7; /* Couleur de base */
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  cursor: pointer; /* Change la forme du curseur */
+  /* Animation fluide pour le changement de couleur */
+}
+
+li:hover {
+  background-color: #b0b3ba; /* Couleur plus foncée */
+}
+
+.accueillogout {
+  width: 22px;
+  height: 18px;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; /* La navbar prend toute la largeur */
+  z-index: 1050; /* S'assure que la barre de navigation est au-dessus des autres éléments */
+  background-color: #ffffff; /* Optionnel : couleur de fond */
+  border-bottom: 1px solid #ddd; /* Optionnel : bordure en bas */
+}
+
+.navbar-button {
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+
+  transition: transform 0.2s ease;
+}
+
+.navbar-button:hover {
+  transform: scale(1.1);
+}
+
+.nav-item {
+  margin-right: 10px;
+}
+
+.navbar-brand {
+  cursor: pointer; /* Change le curseur */
+  transition: color 0.3s, text-shadow 0.3s; /* Ajoute une transition fluide */
+}

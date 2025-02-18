@@ -1,0 +1,151 @@
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  min-height: 100vh;
+  background-color: #f2f4f7;
+}
+
+.friend-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.friend-info h5 {
+  margin: 0;
+}
+
+.online {
+  color: green;
+  font-weight: bold;
+}
+
+.offline {
+  color: gray;
+  font-weight: normal;
+}
+
+.layout {
+  display: flex;
+  margin-top: 56px; /* Décalage pour éviter le chevauchement avec l'en-tête */
+  flex: 1;
+}
+
+.sidebar {
+  width: 250px;
+  height: calc(100vh - 56px);
+  position: fixed;
+  top: 56px;
+  left: 0;
+  overflow-y: auto;
+  z-index: 2; /* Assure que la barre latérale reste au-dessus des autres éléments */
+  background-size: 300% 100%;
+  background-color: #f2f4f7;
+}
+
+.post-author-image {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border: 2px solid #ccc;
+  margin-right: 15px;
+}
+
+@keyframes convergeAndDisperse {
+  0% {
+    background-position: 0% 50%, 100% 50%;
+  }
+  50% {
+    background-position: 50% 50%, 50% 50%;
+  }
+  100% {
+    background-position: 0% 50%, 100% 50%;
+  }
+}
+
+.content {
+  margin-left: 250px;
+  padding: 20px;
+  flex: 1;
+}
+
+.sidebar-right {
+  right: 0;
+  width: 280px;
+  height: calc(
+    100vh - 56px
+  ); /* Ajustement en fonction de la hauteur de l'écran */
+  position: fixed;
+  top: 56px;
+  overflow-y: auto;
+  z-index: 2; /* Assure que l'élément reste au-dessus */
+  background-size: 300% 100%;
+  background-color: #f2f4f7;
+}
+
+.backgroundBio {
+  background-image: url("/backgroundBio.jpg");
+  background-size: cover; /* Ajuste l'image pour couvrir tout l'élément */
+  background-position: center; /* Centre l'image */
+  background-repeat: no-repeat; /* Évite de répéter l'image */
+}
+
+.hover-effect {
+  transition: transform 0.2s, filter 0.2s;
+}
+
+.hover-effect:hover {
+  transform: scale(1.4);
+  filter: brightness(0.2);
+}
+
+/*.custom-line {
+ height: 0px; /* Épaisseur de la ligne */
+/*background-color: gray;
+ margin: 20px 15px; /* Espace autour de la ligne 
+}*/
+
+.imageIcone,
+.sendIcone {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s, filter 0.2s;
+  margin: 0 5px; /* Espace horizontal entre les icônes */
+  cursor: pointer;
+}
+
+.imageIcone:hover,
+.sendIcone:hover {
+  transform: scale(1.2);
+  filter: brightness(1.2);
+}
+
+.share-icons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.divider {
+  border-top: 1px solid #ddd;
+  margin: 10px 0;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 10px; /* Distance depuis le haut */
+  right: 10px; /* Distance depuis la droite */
+  background: none;
+  border: none;
+  color: #aaa; /* Couleur grise discrète */
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.delete-btn:hover {
+  color: #198753; /* Devient vert FaceBike au survol */
+  transform: scale(1.1);
+}

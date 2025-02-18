@@ -1,0 +1,68 @@
+<div class=" mb-4 liste" style="margin-top:35px;">
+  <div class="card-body">
+    <h6><img class="iconsidebar" src="/friendreq1.png" alt="friend request"> Demandes d'amis</h6>
+    <div *ngIf="pendingRequests.length > 0; else noPendingRequests">
+      <ul class="list-group">
+        <li *ngFor="let request of pendingRequests"
+            class="list-group-item d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center">
+            <img [src]="'http://localhost:3000/' + request.requester.photo" alt="Photo de profil"
+                 class="rounded-circle post-author-image me-2" />
+            <span>{{ request.requester.pseudonym }}</span>
+          </div>
+          <div class="button-container d-flex">
+            <a class="nav-link me-2" (click)="onAccept(request._id)">
+              <img src="/accepted1.png" class="accepterIcone" alt="Accepter">
+            </a>
+            <a class="nav-link" (click)="onDecline(request._id)">
+              <img src="/cancel2.png" class="accepterIcone" alt="Refuser">
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <ng-template #noPendingRequests>
+      <p class="text-muted">Aucune demande en attente.</p>
+    </ng-template>
+  </div>
+</div>
+<div class=" mb-4">
+  <div class="card-body">
+    <h6 class="card-title"><img class="iconsidebar" src="/friendship1.png" alt="friend request"> Liste des amis</h6>
+    <div *ngIf="friends.length > 0; else noFriends" style="margin-top:15px;">
+      <ul class="list-group">  
+        <!-- Utilisation de <ng-container> pour éviter d'ajouter un élément supplémentaire -->
+        <ng-container *ngFor="let friend of friends">
+          <div style="display:flex;">
+          <div style="width:210px;">
+          <li class="list-group-item d-flex align-items-center position-relative">
+            <img [src]="'http://localhost:3000/' + friend.photo" alt="Photo de profil"
+                 class="rounded-circle post-author-image me-2" />
+            <span>{{ friend.firstName }} {{ friend.lastName }}</span>            
+          </li>
+        </div>
+          <div class="dropdown ms-2" style="width:20px;">
+            <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" (click)="toggleDropdown(friend)">
+              <i class="fas fa-arrow-down"></i>
+            </button>
+            <ul class="dropdown-menu show-on-top">
+              <li *ngFor="let recommendedFriend of recommendationLists">
+                <a class="dropdown-item d-flex align-items-center" (click)="onRecommend(friend._id!, recommendedFriend._id!)">
+                  <img [src]="'http://localhost:3000/' + recommendedFriend.photo"
+                       alt="Photo" class="rounded-circle me-2" width="30" height="30" />
+                  <span>{{ recommendedFriend.firstName }} {{ recommendedFriend.lastName }}</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        </ng-container>
+
+      </ul>
+    </div>
+
+    <ng-template #noFriends>
+      <p class="text-muted">Aucun ami pour le moment.</p>
+    </ng-template>
+  </div>
+</div>

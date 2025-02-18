@@ -1,0 +1,118 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <!-- Lien vers la page d'accueil avec logo de FaceBike -->
+    <a class="navbar-brand text-success" (click)="onAccueilClick()" *ngIf="!isAdmin">
+      FaceBike
+      <i class="fa-solid fa-bicycle fa-xl"></i>
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- Formulaire de recherche des utilisateurs -->
+      <form
+        class="d-flex position-relative align-items-center flex-grow-1 me-3"
+      >
+        <div class="position-relative w-100" *ngIf="!isAdmin">
+          <!-- Champ de recherche avec une icône de loupe à gauche -->
+          <input
+            class="form-control me-2 bg-light-subtle ps-5"
+            [formControl]="searchControl"
+            type="search"
+            placeholder="Rechercher"
+            aria-label="Search"
+          />
+          <!-- Icône de loupe à l'intérieur du champ de recherche -->
+          <i
+            class="fa-solid fa-magnifying-glass position-absolute text-muted"
+            style="
+              left: 15px;
+              top: 50%;
+              transform: translateY(-50%);
+              pointer-events: none;
+            "
+          ></i>
+        </div>
+        <!-- Liste déroulante des utilisateurs filtrés, affichée si des résultats sont trouvés -->
+        <div
+          *ngIf="searchControl.value && filteredUsers.length > 0"
+          class="dropdown-menu show position-absolute divfor"
+        >
+          <a
+            *ngFor="let user of filteredUsers"
+            href="javascript:void(0)"
+            class="dropdown-item"
+            (click)="onUserClick(user); searchControl.setValue('')"
+          >
+            {{ user.firstName || "" }} {{ user.lastName || "" }}
+          </a>
+        </div>
+        <!-- Affichage d'un message indiquant qu'aucun utilisateur n'a été trouvé -->
+        <div
+          *ngIf="searchControl.value && filteredUsers.length === 0"
+          class="dropdown-menu show position-absolute text-muted divfor"
+        >
+          <a
+            style="margin-left: 15px; height: 10px"
+            (click)="searchControl.setValue('')"
+          >
+            Aucun utilisateur trouvé
+          </a>
+        </div>
+      </form>
+      <!-- Liens de navigation principaux -->
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item" *ngIf="!isAdmin">
+          <a class="nav-link" (click)="onAccueilClick()">
+            <img src="/home2.png" class="navbar-button" alt="Accueil" />
+          </a>
+        </li>
+        <ng-container *ngIf="isAdmin">
+          <li class="nav-item">
+            <a class="nav-link" (click)="onStatisticsClick()" >
+              <img src="/admin1.png" class="navbar-button" alt="Admin" />
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="onPostsAdminClick()">
+              <img src="/profil2.png" class="navbar-button" alt="Profil" />
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="onUserAdmin()">
+              <img src="/profil2.png" class="navbar-button" alt="Profil" />
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="onMessagingPrivateClick()">
+              <img src="/messaging3.png" class="navbar-button" alt="Messages" />
+            </a>
+          </li>
+        </ng-container>
+      <ng-container *ngIf="!isAdmin">
+        <!-- Lien vers la page de profil -->
+        <li class="nav-item">
+          <a class="nav-link" (click)="onProfileClick()">
+            <img src="/profil2.png" class="navbar-button" alt="Profil" />
+          </a>
+        </li>
+        <!-- Lien vers la messagerie -->
+        <li class="nav-item">
+          <a class="nav-link" (click)="onMessagingClick()">
+            <img src="/messaging3.png" class="navbar-button" alt="Messages" />
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="onMessagingGroupeClick()">
+            <img src="/messaging3.png" class="navbar-button" alt="Messages" />
+          </a>
+        </li>
+      </ng-container>
+        <!-- Lien de déconnexion -->
+        <li class="nav-item">
+          <a class="nav-link" (click)="onLogoutClick()">
+            <img src="/log_out4.png" class="navbar-button" alt="Déconnexion" />
+          </a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+</nav>

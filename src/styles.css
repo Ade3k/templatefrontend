@@ -1,0 +1,9 @@
+
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+html, body {
+  overflow: auto; /* Active le défilement si nécessaire */
+  height: 100%; /* Garantit que le corps prend tout l'espace */
+}

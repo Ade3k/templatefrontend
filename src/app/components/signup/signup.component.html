@@ -1,0 +1,126 @@
+<body>
+  <div class="homepage">
+    <!-- Conteneur principal de la page d'accueil -->
+    <div class="container text-center mt-5">
+      <div class="row">
+        <!-- Colonne gauche avec le titre et la description -->
+        <div class="col-md-6 text-start">
+          <h1 class="text-success">
+            Bienvenue sur FaceBike <i class="fa-solid fa-bicycle"></i>
+          </h1>
+          <p>
+            Le réseau social pour les passionnés des véhicules à deux roues.
+          </p>
+        </div>
+        <!-- Colonne droite contenant le formulaire d'inscription -->
+        <div class="col-md-6 text-end">
+          <div class="card text-center mb-3 mycard" style="width: 30rem">
+            <div class="card-body">
+              <form method="POST" (ngSubmit)="onSubmit()" #signUpForm="ngForm">
+                <!-- Champ pour le pseudonyme -->
+                <div class="myFlexbox">
+                  <div>
+                    <div class="mb-3">
+                      <input type="text" class="form-control" placeholder="Pseudonym" [(ngModel)]="pseudonym"
+                        name="pseudonym" #pseudonymInput="ngModel" required />
+                      <div *ngIf="pseudonymInput.errors?.['required'] && pseudonymInput.touched" class="text-danger">
+                        Le pseudonyme est requis.
+                      </div>
+                    </div>
+                    <!-- Champ pour l'email -->
+                    <div class="mb-3">
+                      <input type="email" class="form-control" placeholder="Email" [(ngModel)]="email" name="email"
+                        #emailInput="ngModel" required email />
+                      <div *ngIf="emailInput.errors?.['required'] && emailInput.touched" class="text-danger">
+                        L'email est requis.
+                      </div>
+                      <div *ngIf="emailInput.errors?.['email'] && emailInput.touched" class="text-danger">
+                        Email invalide.
+                      </div>
+                    </div>
+                    <!-- Champ pour le mot de passe -->
+                    <div class="mb-3">
+                      <input type="password" class="form-control" placeholder="Mot de passe" [(ngModel)]="password"
+                        name="password" #passwordInput="ngModel" required minlength="6" />
+                      <div *ngIf="passwordInput.errors?.['required'] && passwordInput.touched" class="text-danger">
+                        Le mot de passe est requis.
+                      </div>
+                      <div *ngIf="passwordInput.errors?.['minlength'] && passwordInput.touched" class="text-danger">
+                        Le mot de passe doit comporter au moins 6 caractères.
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <input type="text" class="form-control" placeholder="Prénom" [(ngModel)]="firstName"
+                        name="firstName" />
+                    </div>
+                    <div class="mb-3">
+                      <input type="text" class="form-control" placeholder="Nom" [(ngModel)]="lastName"
+                        name="lastName" />
+                    </div>
+                    <!-- Champ pour l'âge -->
+                    <div class="mb-3">
+                      <input type="number" class="form-control" placeholder="Âge" [(ngModel)]="age" name="age"
+                        #ageInput="ngModel" required min="12" />
+                    </div>
+                    <!-- Sélecteur de genre -->
+                    <div class="mb-3">
+                      <select class="form-control" [(ngModel)]="gender" name="gender" #genderInput="ngModel" required>
+                        <option value="Male">Homme</option>
+                        <option value="Female">Femme</option>
+                      </select>
+                      <div *ngIf="genderInput.errors?.['required'] && genderInput.touched" class="text-danger">
+                        Le genre est requis.
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <!-- Champ pour la bio -->
+                    <div class="mb-3">
+                      <textarea class="form-control" placeholder="Bio" [(ngModel)]="bio" name="bio"></textarea>
+                    </div>
+                    <!-- Champ pour les préférences -->
+                    <div class="mb-3 pref">
+                      <label class="form-label">Préférences</label>
+                      <div *ngFor="let option of availablePreferences">
+                        <input type="checkbox" [value]="option" (change)="onCheckboxChange($event, option)"
+                          [checked]="preferences.includes(option)" />
+                        {{ option }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Champ pour la photo de profil -->
+                <div class="mb-3">
+                  <input type="file" id="profilePicture" class="form-control d-none" (change)="onFileSelected($event)"
+                    accept="image/*" />
+                  <label for="profilePicture" class="btn btn-outline-success w-100">
+                    Choisir une photo de profil
+                  </label>
+                  <div *ngIf="selectedFileName" class="mt-2">
+                    Fichier sélectionné : {{ selectedFileName }}
+                  </div>
+                </div>
+
+                <!-- Bouton pour soumettre le formulaire d'inscription -->
+                <button type="submit" [disabled]="signUpForm.invalid" class="btn btn-primary btn-success">
+                  S'inscrire
+                </button><br />
+
+                <!-- Lien pour mot de passe oublié -->
+                <hr />
+              </form>
+
+              <!-- Bouton pour rediriger vers la page de connexion -->
+              <button (click)="navigateToLogin()" routerLink="/login" class="btn btn-primary btn-warning">
+                Vous avez déjà un compte ?
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <!-- <p>FaceBike © 2024</p> -->
+  </footer>
+</body>

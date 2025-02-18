@@ -1,0 +1,104 @@
+/* Conteneur de la carte, on s'assure qu'il a un z-index faible pour que le dropdown puisse être au-dessus */
+.card-body {
+  position: relative;
+  z-index: 1; /* Assurez-vous que cet élément est derrière le dropdown */
+  overflow: visible !important; /* Permet d'éviter que le dropdown soit caché */
+}
+
+/* Liste des amis existants */
+.list-group-item {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  position: relative;  /* Positionné relativement pour permettre l'empilement correct */
+  z-index: 1; /* Moins important que le dropdown */
+}
+
+/* Liste des amis recommandés (dans le dropdown) */
+.dropdown-menu {
+  position: fixed !important;  /* Fixe pour éviter d’être caché derrière d'autres éléments */
+  z-index: 99999 !important;  /* Très haut pour être au-dessus des autres éléments */
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%; /* S'assure qu'il occupe toute la largeur du bouton */
+}
+
+/* Liste des amis recommandés (dans le dropdown) */
+.dropdown-list {
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  padding: 8px 0;
+  z-index: 9999; /* Assurez-vous qu'il soit au-dessus des autres éléments */
+}
+
+/* Stylisation des éléments dans la liste des amis recommandés */
+.dropdown-list .list-group-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+
+.dropdown-list .list-group-item img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  margin-right: 8px;
+}
+
+.dropdown-list .list-group-item span {
+  flex-grow: 1;
+}
+
+/* Effet de survol pour les éléments recommandés */
+.dropdown-list .list-group-item:hover {
+  background-color: #f1f1f1;
+}
+
+/* Autres éléments de style */
+.text-muted {
+  font-size: 14px;
+}
+
+.iconsidebar {
+  width: 20px;
+  height: 16px;
+}
+
+.fas {
+  font-size: 16px; /* Taille de la flèche */
+}
+
+.post-author-image {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  margin-right: 8px;
+}
+
+.accepterIcone {
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-group-item .btn {
+  font-size: 14px;
+}
+
+/* Ajout d'une classe pour forcer le dropdown à apparaître au-dessus de tout */
+.show-on-top {
+  position: absolute !important;
+  z-index: 99999 !important;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  left: 0; /* Ajuste selon le besoin */
+  top: 100%; /* Juste en dessous du bouton */
+}

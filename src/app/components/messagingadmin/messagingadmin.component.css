@@ -1,0 +1,14 @@
+.tableuseradmin {
+    width: 100% !important; /* Forcer le tableau à occuper 80% de la largeur */
+    margin: auto;
+    table-layout: fixed; /* Fixer la largeur des colonnes */
+    overflow-y: auto; /* Ajoute un défilement vertical si nécessaire */
+    max-height: 400px; /* Limiter la hauteur du tableau */
+    display: block; /* Nécessaire pour que l'overflow fonctionne */
+    overflow-x: hidden; /* Enlever l'overflow horizontal */
+    margin-left:50px;
+    min-width: 100% ;
+    max-width:100% ;
+}
+
+

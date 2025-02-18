@@ -1,0 +1,54 @@
+.profile-section {
+  margin-top: 70px;
+  text-align: center;
+}
+
+img {
+  width: 180px;
+  height: 180px;
+  margin-top: 15px;
+}
+
+.info-section {
+  margin-top: 25px;
+  margin-left: 15px;
+  font-size: 14px;
+}
+
+strong {
+  margin-left: 1px; /**/
+}
+
+.sideBarGenderIcone {
+  width: 50px;
+  height: 50px;
+  margin-top: -10px;
+  border-radius: 10px;
+}
+
+.div3 {
+  position: fixed;
+  width: 250px;
+  bottom: 0;
+  height: 145px;
+}
+
+.profile-picture {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin: 0 auto;
+  display: block;
+}
+
+.sideBarIcon {
+  width: 18px;
+  height: 16px;
+}
+
+.list-group-item {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}

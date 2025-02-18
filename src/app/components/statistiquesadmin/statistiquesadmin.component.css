@@ -1,0 +1,19 @@
+#postChart {
+    min-width: 80%;
+    max-width: 80%;
+    min-height: 90%;
+    max-height: 90%;
+}
+
+#messageChart {
+    min-width: 80%;
+    max-width: 80%;
+    min-height: 90%;
+    max-height: 90%;
+}
+
+.madiv {
+    display: flex;
+    gap:50px;
+
+}

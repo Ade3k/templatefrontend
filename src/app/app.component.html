@@ -1,0 +1,22 @@
+<div>
+  <app-navbar
+    *ngIf="showNavAndSidebar"
+    (userSelected)="onUserSelected($event)"
+    (profileClicked)="onProfileClick()"
+    class="navbar"
+  ></app-navbar>
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>
+  <app-sidebar-left
+    *ngIf="showNavAndSidebar && SideBars"
+    class="sidebar"
+    [user]="selectedUser || user"
+  ></app-sidebar-left>
+  <app-sidebar-right
+    class="sidebar-right"
+    *ngIf="showNavAndSidebar && SideBars"
+    (acceptRequest)="acceptFriendRequest($event)"
+    (declineRequest)="declineFriendRequest($event)"
+  ></app-sidebar-right>
+</div>

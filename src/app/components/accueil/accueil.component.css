@@ -1,0 +1,85 @@
+.commentaireIcone {
+  width: 25px;
+  height: 25px;
+}
+
+.likeIcone {
+  width: 35px;
+  height: 25px;
+  margin-top: -5px; /* Décalage vers le haut pour aligner l'icône */
+}
+
+.likeComment {
+  display: flex; /* Utilisation du modèle flexbox pour l'alignement des éléments */
+  margin: 10px;
+}
+
+hr {
+  width: 95%; /* Largeur de la ligne horizontale (95% de la largeur du parent) */
+  margin: auto;
+}
+
+.postContent {
+  border-radius: 15px;
+  background-color: #f2f4f7;
+}
+
+.accueilIcone {
+  width: 25px;
+  height: 25px;
+  margin-top: 7px;
+  margin-left: 10px;
+}
+
+.cardCard {
+  width: 64%;
+  margin-left: 12px;
+}
+
+/*.sendIcone {
+    width:35px;
+    height:35px;
+    margin-top:2px;
+    cursor: pointer;
+}
+
+.imageIcone {
+    width:35px;
+    height:35px;
+    margin-left:15px;
+    margin-top:2px;
+    cursor: pointer;
+}*/
+
+.image-post {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Couvre l'espace sans déformer l'image */
+  border-radius: 8px;
+  max-height: 400px;
+}
+
+.imageIcone,
+.sendIcone {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s, filter 0.2s;
+  margin: 0 5px; /* Espace horizontal entre les icônes */
+}
+
+.delete-btn {
+  position: absolute;
+  top: 10px; /* Distance depuis le haut */
+  right: 10px; /* Distance depuis la droite */
+  background: none;
+  border: none;
+  color: #aaa; /* Couleur grise discrète */
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.delete-btn:hover {
+  color: #198753; /* Devient vert FaceBike au survol */
+  transform: scale(1.1);
+}

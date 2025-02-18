@@ -1,0 +1,188 @@
+<div class="layout">
+  <div class="content" style="margin-top: 20px">
+    <div style="margin-left: 70px">
+      <div class="row">
+        <!-- Section pour ajouter une publication -->
+        <div *ngIf="isUserProfile()" class="card mb-4 col-md-8 cardCard">
+          <div class="card-body d-flex">
+            <!-- Affichage de la photo de profil de l'utilisateur -->
+            <img
+              [src]="
+                'http://localhost:3000/' + (selectedUser?.photo || user?.photo)
+              "
+              alt="Photo de profil"
+              class="rounded-circle post-author-image"
+            />
+
+            <!-- Zone de texte pour entrer le contenu de la publication -->
+            <textarea
+              [(ngModel)]="newPostContent"
+              class="form-control postContent"
+              rows="1"
+              [placeholder]="
+                selectedUser?.firstName
+                  ? 'Quoi de neuf, ' + selectedUser.firstName + ' ?'
+                  : 'Quoi de neuf ?'
+              "
+            ></textarea>
+
+            <!-- Section pour ajouter une image ou envoyer la publication -->
+            <div style="margin-top: 10px; display: flex; margin-left: 10px">
+              <!-- Icône pour sélectionner un fichier -->
+              <a class="nav-link" (click)="fileInput.click()">
+                <img src="/upload4.png" class="imageIcone" alt="Logo" />
+              </a>
+
+              <!-- Input invisible pour sélectionner un fichier -->
+              <input
+                #fileInput
+                type="file"
+                accept="image/*"
+                style="display: none"
+                (change)="onFileSelected($event)"
+              />
+
+              <!-- Icône pour envoyer la publication -->
+              <a class="nav-link" (click)="createPost()">
+                <img src="/send4.png" class="sendIcone" alt="Logo" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Affichage des publications -->
+        <div class="col-md-8">
+          <div class="card mb-4" *ngFor="let post of posts">
+            <!--Suppression de publication-->
+            <button
+              *ngIf="post.author._id === user._id"
+              (click)="deletePost(post._id)"
+              class="delete-btn"
+            >
+              ✖
+            </button>
+
+            <div class="card-body d-flex">
+              <!-- Affichage de la photo de profil de l'auteur de la publication -->
+              <img
+                *ngIf="post.author.photo"
+                [src]="'http://localhost:3000/' + post.author.photo"
+                class="rounded-circle post-author-image"
+              />
+              <div>
+                <!-- Affichage du nom de l'auteur et de la date de création de la publication -->
+                <h6 class="card-title mb-0">
+                  {{ post.author.firstName }} {{ post.author.lastName }}
+                  <small class="text-muted" style="margin-left: 10px">
+                    {{ post.createdAt | date : "short" }}
+                  </small>
+                </h6>
+
+                <!-- Contenu de la publication -->
+                <p class="card-text">{{ post.content }}</p>
+
+                <!-- Affichage de l'image de la publication, si elle existe -->
+                <img
+                  *ngIf="post.image"
+                  [src]="'http://localhost:3000/' + post.image"
+                  class="image-post"
+                />
+              </div>
+            </div>
+            <hr />
+
+            <!-- Section pour les interactions sur la publication -->
+            <div class="likeComment">
+              <!-- Icône pour aimer la publication -->
+              <a class="nav-link commentaire" (click)="openCommentModal(post)">
+                <img
+                  src="/like3.png"
+                  class="likeIcone hover-effect"
+                  style="width: 15px; height: 15px"
+                  alt="Logo"
+                />
+                J'aime
+              </a>
+
+              <!-- Icône pour commenter la publication -->
+              <a
+                class="nav-link commentaire"
+                style="margin-left: 10px"
+                (click)="openCommentModal(post)"
+              >
+                <img
+                  src="/comment3.png"
+                  class="commentaireIcone hover-effect"
+                  style="width: 15px; height: 15px"
+                  alt="Logo"
+                />
+                Commenter
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal pour ajouter un commentaire -->
+  <div
+    id="commentModal"
+    class="modal fade"
+    tabindex="-1"
+    aria-labelledby="commentModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="commentModalLabel">
+            Ajouter un commentaire
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <!-- Affichage des commentaires existants -->
+          <div *ngFor="let comment of selectedPost?.comments">
+            <p>
+              <strong>{{ comment.author }}</strong
+              >: {{ comment.content }}
+            </p>
+          </div>
+
+          <!-- Zone de texte pour entrer un nouveau commentaire -->
+          <textarea
+            [(ngModel)]="newComment"
+            class="form-control mt-3"
+            rows="3"
+            placeholder="Votre commentaire"
+          ></textarea>
+        </div>
+        <div class="modal-footer">
+          <!-- Bouton pour annuler -->
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            data-bs-dismiss="modal"
+          >
+            Annuler
+          </button>
+
+          <!-- Bouton pour enregistrer le commentaire -->
+          <button
+            type="button"
+            class="btn btn-outline-warning"
+            (click)="saveComment(selectedPost._id, newComment)"
+          >
+            Enregistrer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

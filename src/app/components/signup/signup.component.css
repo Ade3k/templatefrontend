@@ -1,0 +1,56 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.homepage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+select[multiple] {
+  height: 100px; /* Ou ajustez selon le besoin */
+  width: 100%;
+}
+.text-danger {
+  font-size: 12px !important; /* Choisissez la taille de votre choix */
+  color: red; /* Ou une autre couleur d'erreur */
+  margin-top:10px;
+  margin-left:10px;
+  width:200px;
+  font-weight:bold;
+}
+
+
+.container {
+  max-width: 800px;
+}
+
+.text-start {
+  text-align: left;
+}
+
+.text-end {
+  text-align: right;
+}
+
+.pwd {
+  font-size: x-small;
+}
+
+.btn {
+  font-size: small;
+}
+.myFlexbox {
+  display:flex;
+  gap:50px;
+}
+.pref {
+  text-align: left;
+}
