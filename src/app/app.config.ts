@@ -11,9 +11,11 @@ import { provideToastr } from 'ngx-toastr';
 import { routes } from './app.routes'; 
 // Importation des définitions de routes de l'application.
 
+import { provideHttpClient, withInterceptors } from '@angular/common/http'; 
 // `provideHttpClient` permet d'activer le client HTTP pour faire des requêtes.
 // `withInterceptors` permet d'ajouter des interceptors pour modifier les requêtes ou réponses HTTP.
 
+import { JwtHttpInterceptor } from './services/authService/jwt-http-interceptor'; 
 // Intercepteur personnalisé qui peut ajouter des headers JWT (JSON Web Token) aux requêtes HTTP pour l'authentification.
 
 export const appConfig: ApplicationConfig = {
@@ -33,6 +35,8 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
 
     // Configuration du client HTTP avec un intercepteur pour ajouter des tokens JWT
-    
+    provideHttpClient(
+      withInterceptors([JwtHttpInterceptor]) // Ajout de l'intercepteur pour gérer les authentifications JWT
+    ),
   ]
 };
