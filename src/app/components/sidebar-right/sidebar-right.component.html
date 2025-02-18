@@ -6,7 +6,7 @@
         <li *ngFor="let request of pendingRequests"
             class="list-group-item d-flex justify-content-between align-items-center">
           <div class="d-flex align-items-center">
-            <img [src]="'http://localhost:3000/' + request.requester.photo" alt="Photo de profil"
+            <img [src]="'https://5e94-2001-861-36c9-6a40-894-7475-54d8-6da5.ngrok-free.app/' + request.requester.photo" alt="Photo de profil"
                  class="rounded-circle post-author-image me-2" />
             <span>{{ request.requester.pseudonym }}</span>
           </div>
@@ -36,7 +36,7 @@
           <div style="display:flex;">
           <div style="width:210px;">
           <li class="list-group-item d-flex align-items-center position-relative">
-            <img [src]="'http://localhost:3000/' + friend.photo" alt="Photo de profil"
+            <img [src]="'https://5e94-2001-861-36c9-6a40-894-7475-54d8-6da5.ngrok-free.app/' + friend.photo" alt="Photo de profil"
                  class="rounded-circle post-author-image me-2" />
             <span>{{ friend.firstName }} {{ friend.lastName }}</span>            
           </li>
@@ -48,7 +48,7 @@
             <ul class="dropdown-menu show-on-top">
               <li *ngFor="let recommendedFriend of recommendationLists">
                 <a class="dropdown-item d-flex align-items-center" (click)="onRecommend(friend._id!, recommendedFriend._id!)">
-                  <img [src]="'http://localhost:3000/' + recommendedFriend.photo"
+                  <img [src]="'https://5e94-2001-861-36c9-6a40-894-7475-54d8-6da5.ngrok-free.app/' + recommendedFriend.photo"
                        alt="Photo" class="rounded-circle me-2" width="30" height="30" />
                   <span>{{ recommendedFriend.firstName }} {{ recommendedFriend.lastName }}</span>
                 </a>

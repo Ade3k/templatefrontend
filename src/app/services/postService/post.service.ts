@@ -7,7 +7,7 @@ import { catchError, forkJoin, map, Observable, throwError } from 'rxjs';
 })
 export class PostService {
 
-  private apiUrl = 'http://localhost:3000/api/posts';
+  private apiUrl = 'https://5e94-2001-861-36c9-6a40-894-7475-54d8-6da5.ngrok-free.app/api/posts';
 
   constructor(private http: HttpClient) { }
 

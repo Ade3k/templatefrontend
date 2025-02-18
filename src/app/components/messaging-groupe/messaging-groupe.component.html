@@ -15,7 +15,7 @@
             <div class="user-card d-flex align-items-center p-2 mb-2 border rounded"
                  *ngFor="let user of userList">
               <input type="checkbox" (change)="toggleUserSelection(user)" />
-              <img [src]="'http://localhost:3000/' + user?.photo" class="rounded-circle me-2"
+              <img [src]="'https://5e94-2001-861-36c9-6a40-894-7475-54d8-6da5.ngrok-free.app/' + user?.photo" class="rounded-circle me-2"
                    style="width: 40px; height: 40px;" />
               <p class="username m-0">{{ user?.firstName }}</p>
             </div>
@@ -44,7 +44,7 @@
                   <div class="message-container">
                     <p class="message-text m-0">{{ item?.message }}</p>
                   </div>
-                  <img [src]="'http://localhost:3000/' + currentUser?.photo"
+                  <img [src]="'https://5e94-2001-861-36c9-6a40-894-7475-54d8-6da5.ngrok-free.app/' + currentUser?.photo"
                        class="rounded-circle ms-2" style="width: 30px; height: 30px;" />
                 </div>
                 <div *ngIf="item?.user !== currentUser?.firstName" class="d-flex">

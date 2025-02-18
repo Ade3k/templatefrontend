@@ -6,7 +6,7 @@
           <div class="user-card d-flex align-items-center p-2 mb-2 border rounded"
             [ngClass]="user?.email === selectedUser?.email ? 'active' : ''" *ngFor="let user of userList"
             (click)="selectUserHandler(user?.email || '')">
-            <img [src]="'http://localhost:3000/' + user?.photo" [alt]="user?.firstName" class="rounded-circle me-2"
+            <img [src]="'https://5e94-2001-861-36c9-6a40-894-7475-54d8-6da5.ngrok-free.app/' + user?.photo" [alt]="user?.firstName" class="rounded-circle me-2"
               style="width: 40px; height: 40px;" />
             <p class="username m-0">{{ user?.firstName }}</p>
           </div>
@@ -16,7 +16,7 @@
         <div class="chat-container d-flex flex-column flex-grow-1">
           <ng-container *ngIf="selectedUser">
             <div class="chat-header d-flex align-items-center p-2 border-bottom">
-              <img [src]="'http://localhost:3000/' + selectedUser?.photo" [alt]="selectedUser?.firstName"
+              <img [src]="'https://5e94-2001-861-36c9-6a40-894-7475-54d8-6da5.ngrok-free.app/' + selectedUser?.photo" [alt]="selectedUser?.firstName"
                 class="rounded-circle me-2" style="width: 40px; height: 40px;" />
               <p class="username m-0">{{ selectedUser?.firstName }}</p>
             </div>
@@ -31,11 +31,11 @@
                   <div class="message-container">
                     <p style="font-size:12px;" class="message-text m-0">{{ item?.message }}</p>
                   </div>
-                  <img [src]="'http://localhost:3000/' + currentUser?.photo" alt="Photo utilisateur"
+                  <img [src]="'https://5e94-2001-861-36c9-6a40-894-7475-54d8-6da5.ngrok-free.app/' + currentUser?.photo" alt="Photo utilisateur"
                     class="rounded-circle ms-2" style="width: 30px; height: 30px;" />
                 </div>
                 <div *ngIf="item?.user !== currentUser?.firstName" class="d-flex">
-                  <img [src]="'http://localhost:3000/' + selectedUser?.photo" alt="Photo utilisateur"
+                  <img [src]="'https://5e94-2001-861-36c9-6a40-894-7475-54d8-6da5.ngrok-free.app/' + selectedUser?.photo" alt="Photo utilisateur"
                     class="rounded-circle me-2" style="width: 30px; height: 30px;" />
                   <div class="message-container">
                     <p style="font-size:12px;" class="message-text m-0">{{ item?.message }}</p>

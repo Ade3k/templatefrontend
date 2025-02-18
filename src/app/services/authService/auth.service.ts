@@ -8,7 +8,7 @@ import { BehaviorSubject, catchError, map, Observable, of, throwError } from 'rx
 })
 export class AuthService {
   
-  private apiUrl = 'http://localhost:3000/api/users'; // URL de l'API pour accéder aux données des utilisateurs
+  private apiUrl = 'https://5e94-2001-861-36c9-6a40-894-7475-54d8-6da5.ngrok-free.app/api/users'; // URL de l'API pour accéder aux données des utilisateurs
 
   constructor(private http: HttpClient) {}
 

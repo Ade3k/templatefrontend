@@ -8,7 +8,7 @@
             <!-- Affichage de la photo de profil de l'utilisateur -->
             <img
               [src]="
-                'http://localhost:3000/' + (selectedUser?.photo || user?.photo)
+                'https://5e94-2001-861-36c9-6a40-894-7475-54d8-6da5.ngrok-free.app/' + (selectedUser?.photo || user?.photo)
               "
               alt="Photo de profil"
               class="rounded-circle post-author-image"
@@ -66,7 +66,7 @@
               <!-- Affichage de la photo de profil de l'auteur de la publication -->
               <img
                 *ngIf="post.author.photo"
-                [src]="'http://localhost:3000/' + post.author.photo"
+                [src]="'https://5e94-2001-861-36c9-6a40-894-7475-54d8-6da5.ngrok-free.app/' + post.author.photo"
                 class="rounded-circle post-author-image"
               />
               <div>
@@ -84,7 +84,7 @@
                 <!-- Affichage de l'image de la publication, si elle existe -->
                 <img
                   *ngIf="post.image"
-                  [src]="'http://localhost:3000/' + post.image"
+                  [src]="'https://5e94-2001-861-36c9-6a40-894-7475-54d8-6da5.ngrok-free.app/' + post.image"
                   class="image-post"
                 />
               </div>

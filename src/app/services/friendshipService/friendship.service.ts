@@ -8,7 +8,7 @@ import { Observable, tap } from 'rxjs';
 
 export class FriendshipService {
 
-  private apiUrl = 'http://localhost:3000/api/friendship';
+  private apiUrl = 'https://5e94-2001-861-36c9-6a40-894-7475-54d8-6da5.ngrok-free.app/api/friendship';
 
   constructor(private http: HttpClient) {
     

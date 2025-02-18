@@ -136,7 +136,7 @@ export class MessagingGroupeComponent implements OnInit {
 
   getUserPhoto(userName: string): string {
     const user = this.userList.find(u => u.firstName === userName);
-    return user ? 'http://localhost:3000/' + user.photo : 'assets/default-avatar.png';
+    return user ? 'https://5e94-2001-861-36c9-6a40-894-7475-54d8-6da5.ngrok-free.app/' + user.photo : 'assets/default-avatar.png';
   }
 
   // Méthode pour permettre à un utilisateur de rejoindre un salon

@@ -8,11 +8,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ChatService {
   private socket: Socket; // Instance de Socket.IO pour la communication en temps réel
-  private apiUrl = 'http://localhost:3000/api/messages'; // URL de l'API pour récupérer et envoyer les messages
+  private apiUrl = 'https://5e94-2001-861-36c9-6a40-894-7475-54d8-6da5.ngrok-free.app/api/messages'; // URL de l'API pour récupérer et envoyer les messages
 
   constructor(private http: HttpClient) {
     // Initialisation de la connexion socket avec les paramètres de transport
-    this.socket = io('http://localhost:3000', {
+    this.socket = io('https://5e94-2001-861-36c9-6a40-894-7475-54d8-6da5.ngrok-free.app', {
       transports: ['websocket', 'polling', 'flashsocket'],
     });
   }
@@ -38,7 +38,7 @@ getUserGroups(userId: string): Observable<any> {
 
 
   getAllMessages(): Observable<any> {
-    return this.http.post('http://localhost:3000/api/messages/getallmessages', {});
+    return this.http.post('https://5e94-2001-861-36c9-6a40-894-7475-54d8-6da5.ngrok-free.app/api/messages/getallmessages', {});
   }
 
   // Méthode pour rejoindre une salle de chat spécifique
@@ -57,7 +57,7 @@ getUserGroups(userId: string): Observable<any> {
   }
 
   deleteMessage(messageId: string): Observable<any> {
-    return this.http.post('http://localhost:3000/api/messages/delete', { messageId });
+    return this.http.post('https://5e94-2001-861-36c9-6a40-894-7475-54d8-6da5.ngrok-free.app/api/messages/delete', { messageId });
   }
 
   // Méthode pour sauvegarder un message dans la base de données via une requête HTTP
